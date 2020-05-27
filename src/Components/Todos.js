@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
+
 const Todos = (props)=>{
 
     const classes = useStyles();
@@ -29,7 +30,15 @@ const Todos = (props)=>{
       <GridList cellHeight={400}className={classes.gridList} cols={5}>
         {props.data.map((todos,index) => (
           <GridListTile key={todos.id}>
-            <TodoDisplay click={()=>props.delete(index)} key={todos.id} data={todos.description}  />
+            <TodoDisplay click={()=>props.delete(index)} 
+            key={todos.id} 
+            data={todos.description} 
+            dbclick={()=>props.edit(todos.id)}  
+            editable={todos.editable}
+            editInput={(event)=>props.editInput(event,todos.id)}
+            enter={(e)=>props.enter(e,todos.id)}
+            
+            />
           </GridListTile>
         ))}
       </GridList>
