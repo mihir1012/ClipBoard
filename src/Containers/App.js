@@ -6,6 +6,7 @@ import Todos from '../Components/Todos';
 class App extends Component {
 
   state=({
+    demoid:0,
     todos:[],
     current:'',
   })
@@ -17,14 +18,14 @@ class App extends Component {
 
   onAddHandler=()=>{
     const newTodo = [...this.state.todos];
-    newTodo.push(this.state.current);
-    this.setState({todos:newTodo});
-    console.log(this.state.todos)
+    const id = this.state.demoid+1;
+    console.log(id)
+    newTodo.push({id:id,description:this.state.current});
+    this.setState({todos:newTodo,demoid:id});
   }
 
   onDeleteHandler=(index)=>{
     console.log("you click me")
-
     const temp =[...this.state.todos];
     temp.splice(index,1);
     this.setState({todos:temp})
@@ -33,6 +34,7 @@ class App extends Component {
 
 
   render(){
+   
   return (
     <div className="App">
       <Todo onchange={(event)=>this.onInputHandler(event)} add={this.onAddHandler} />
