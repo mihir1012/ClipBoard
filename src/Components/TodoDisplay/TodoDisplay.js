@@ -30,6 +30,18 @@ const TodDisplay = (props)=>{
           marginBottom: 12
         }
       });
+
+      
+    
+
+      let data=props.data
+      if(props.editable){
+        data=(<input type='text' 
+        value={props.data} 
+        onChange={props.editInput}
+        onKeyUp={props.enter} />
+        )
+      }
       
     return(
 
@@ -51,8 +63,8 @@ const TodDisplay = (props)=>{
        gutterBottom>
        Word of the Day
      </Typography>
-     <Typography variant="h5" component="h2">
-       {props.data}
+     <Typography variant="h5" component="h2" onDoubleClick={props.dbclick}>
+       {data}
      </Typography>
    </CardContent>
    <CardActions>
